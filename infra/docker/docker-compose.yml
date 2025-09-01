@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: chooz-postgres
+    environment:
+      POSTGRES_USER: chooz
+      POSTGRES_PASSWORD: chooz
+      POSTGRES_DB: chooz
+    ports:
+      - "5432:5432"
+    volumes:
+      - chooz_pg_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chooz -d chooz"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  web:
+    image: node:20
+    container_name: chooz-web
+    working_dir: /workspace/apps/web
+    command: bash -lc "npm install --no-audit --no-fund && npm run dev -- -p 3000 --hostname 0.0.0.0"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://chooz:chooz@postgres:5432/chooz?schema=public
+      NEXTAUTH_URL: http://localhost:3000
+      AUTH_SECRET: dev-secret-please-change
+    volumes:
+      - /home/aldur/dev/chooz:/workspace
+      - web_node_modules:/workspace/apps/web/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  chooz_pg_data:
+  web_node_modules:
+
+
