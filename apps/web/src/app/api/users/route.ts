@@ -12,12 +12,19 @@ export async function GET(req: Request) {
   try {
     if (tagSlugs.length === 0) {
       const { rows } = await client.query(
-        `SELECT u.id, u.username, u.display_name, u.bio,
-                ARRAY_AGG(t.name ORDER BY t.name) AS tags
+        `SELECT 
+            u.id,
+            u.username,
+            u.display_name,
+            u.bio,
+            u.gender,
+            COALESCE(MAX(p.url), CASE WHEN u.gender='male' THEN '/images/default-male.svg' ELSE '/images/default-female.svg' END) AS photo_url,
+            ARRAY_REMOVE(ARRAY_AGG(t.name ORDER BY t.name), NULL) AS tags
          FROM users u
-         JOIN user_tags ut ON ut.user_id = u.id
-         JOIN tags t ON t.id = ut.tag_id
-         GROUP BY u.id, u.username, u.display_name, u.bio
+         LEFT JOIN photos p ON p.user_id = u.id AND p.is_primary = TRUE
+         LEFT JOIN user_tags ut ON ut.user_id = u.id
+         LEFT JOIN tags t ON t.id = ut.tag_id
+         GROUP BY u.id, u.username, u.display_name, u.bio, u.gender
          ORDER BY u.username`
       )
       return NextResponse.json(rows)
@@ -34,12 +41,20 @@ export async function GET(req: Request) {
          GROUP BY u.id, u.username, u.display_name, u.bio
          HAVING COUNT(DISTINCT st.id) = $2
        )
-       SELECT uws.id, uws.username, uws.display_name, uws.bio,
-              ARRAY_AGG(t.name ORDER BY t.name) AS tags
+       SELECT 
+              uws.id,
+              uws.username,
+              uws.display_name,
+              uws.bio,
+              u.gender,
+              COALESCE(MAX(p.url), CASE WHEN u.gender='male' THEN '/images/default-male.svg' ELSE '/images/default-female.svg' END) AS photo_url,
+              ARRAY_REMOVE(ARRAY_AGG(t.name ORDER BY t.name), NULL) AS tags
        FROM users_with_selected uws
-       JOIN user_tags ut ON ut.user_id = uws.id
-       JOIN tags t ON t.id = ut.tag_id
-       GROUP BY uws.id, uws.username, uws.display_name, uws.bio
+       JOIN users u ON u.id = uws.id
+       LEFT JOIN photos p ON p.user_id = uws.id AND p.is_primary = TRUE
+       LEFT JOIN user_tags ut ON ut.user_id = uws.id
+       LEFT JOIN tags t ON t.id = ut.tag_id
+       GROUP BY uws.id, uws.username, uws.display_name, uws.bio, u.gender
        ORDER BY uws.username`,
       [tagSlugs, tagSlugs.length]
     )

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-type UserRow = { id: string; username: string; display_name: string | null; bio: string | null; tags: string[] }
+type UserRow = { id: string; username: string; display_name: string | null; bio: string | null; gender: string; photo_url: string; tags: string[] }
 type TagRow = { name: string; slug: string }
 
 export default function UsersBrowserClient({ initialUsers, tags }: { initialUsers: UserRow[]; tags: TagRow[] }) {
@@ -33,13 +33,16 @@ export default function UsersBrowserClient({ initialUsers, tags }: { initialUser
       ) : (
         <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 12 }}>
           {users.map(u => (
-            <li key={u.id} style={{ border: '1px solid #eee', borderRadius: 8, padding: 12 }}>
-              <div style={{ fontWeight: 600 }}>{u.display_name || u.username}</div>
-              {u.bio && <div style={{ color: '#666', marginTop: 4 }}>{u.bio}</div>}
-              <div style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
-                {u.tags.map(t => (
-                  <span key={t} style={{ fontSize: 12, padding: '2px 8px', border: '1px solid #ddd', borderRadius: 999 }}>{t}</span>
-                ))}
+            <li key={u.id} style={{ border: '1px solid #eee', borderRadius: 8, padding: 12, display: 'grid', gridTemplateColumns: '64px 1fr', gap: 12, alignItems: 'start' }}>
+              <img src={u.photo_url} alt={u.username} width={64} height={64} style={{ borderRadius: 8, objectFit: 'cover', aspectRatio: '1 / 1' }} />
+              <div>
+                <div style={{ fontWeight: 600 }}>{u.display_name || u.username} <span style={{ color: '#888', fontWeight: 400 }}>({u.gender})</span></div>
+                {u.bio && <div style={{ color: '#666', marginTop: 4 }}>{u.bio}</div>}
+                <div style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
+                  {u.tags.map(t => (
+                    <span key={t} style={{ fontSize: 12, padding: '2px 8px', border: '1px solid #ddd', borderRadius: 999 }}>{t}</span>
+                  ))}
+                </div>
               </div>
             </li>
           ))}
