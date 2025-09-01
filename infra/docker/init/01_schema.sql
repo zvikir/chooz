@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT NOT NULL,
   display_name TEXT,
   bio TEXT,
+  -- required gender for app features (male|female)
+  gender TEXT NOT NULL CHECK (gender IN ('male','female')),
   birthdate DATE,
   location TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()

@@ -7,11 +7,11 @@ INSERT INTO tags (id, name, slug) VALUES
   (gen_random_uuid(), 'Vegan', 'vegan')
 ON CONFLICT (name) DO NOTHING;
 
--- Seed users (password_hash is placeholder for now)
-INSERT INTO users (id, email, username, password_hash, display_name, bio, birthdate, location) VALUES
-  (gen_random_uuid(), 'alice@example.com', 'alice', 'DUMMY_HASH', 'Alice', 'Love trails and coffee.', '1995-06-12', 'Berlin'),
-  (gen_random_uuid(), 'bob@example.com',   'bob',   'DUMMY_HASH', 'Bob',   'Music nerd and weekend gamer.', '1993-02-03', 'London'),
-  (gen_random_uuid(), 'cara@example.com',  'cara',  'DUMMY_HASH', 'Cara',  'Frontend dev. Tech & vegan food.', '1997-10-21', 'Tel Aviv')
+-- generate bcrypt hashes for 'password' using pgcrypto's crypt() + gen_salt('bf')
+INSERT INTO users (id, email, username, password_hash, display_name, bio, gender, birthdate, location) VALUES
+  (gen_random_uuid(), 'alice@example.com', 'alice', crypt('password', gen_salt('bf')), 'Alice', 'Love trails and coffee.', 'female', '1995-06-12', 'Berlin'),
+  (gen_random_uuid(), 'bob@example.com',   'bob',   crypt('password', gen_salt('bf')), 'Bob',   'Music nerd and weekend gamer.', 'male', '1993-02-03', 'London'),
+  (gen_random_uuid(), 'cara@example.com',  'cara',  crypt('password', gen_salt('bf')), 'Cara',  'Frontend dev. Tech & vegan food.', 'female', '1997-10-21', 'Tel Aviv')
 ON CONFLICT (email) DO NOTHING;
 
 -- Map tags to users
@@ -35,5 +35,14 @@ FROM (
 JOIN u ON u.email = pairs.email
 JOIN t ON t.name = pairs.tag
 ON CONFLICT DO NOTHING;
+
+-- default primary photos by gender
+INSERT INTO photos (user_id, url, is_primary)
+SELECT u.id,
+       CASE WHEN u.gender='male' THEN '/images/default-male.svg' ELSE '/images/default-female.svg' END,
+       TRUE
+FROM users u
+LEFT JOIN photos p ON p.user_id = u.id AND p.is_primary = TRUE
+WHERE p.id IS NULL;
 
 
