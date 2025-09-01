@@ -9,7 +9,9 @@ export default function Home() {
       <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
         <a href="#users" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Browse users</a>
         <a href="/login" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Login</a>
-        <a href="#signup" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Sign up</a>
+        <a href="/signup" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Sign up</a>
+        <a href="/me" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>My profile</a>
+        <a href="/logout" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Logout</a>
       </div>
       <section>
         <h2 id="users" style={{ fontSize: 20, marginBottom: 12 }}>Users</h2>
