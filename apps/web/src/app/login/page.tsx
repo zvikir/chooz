@@ -21,22 +21,22 @@ export default function LoginPage() {
   }
 
   return (
-    <main style={{ maxWidth: 420, margin: '40px auto', padding: '0 16px' }}>
-      <h1 style={{ fontSize: 24, marginBottom: 12 }}>Login</h1>
-      <form onSubmit={onSubmit} style={{ display: 'grid', gap: 12 }}>
-        <label style={{ display: 'grid', gap: 6 }}>
+    <main className="mx-auto max-w-md px-4 py-8">
+      <h1 className="mb-3 text-2xl font-semibold">Login</h1>
+      <form onSubmit={onSubmit} className="grid gap-3">
+        <label className="grid gap-1.5 text-sm">
           <span>Email</span>
-          <input value={email} onChange={e => setEmail(e.target.value)} type="email" required style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={email} onChange={e => setEmail(e.target.value)} type="email" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
-        <label style={{ display: 'grid', gap: 6 }}>
+        <label className="grid gap-1.5 text-sm">
           <span>Password</span>
-          <input value={password} onChange={e => setPassword(e.target.value)} type="password" required style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={password} onChange={e => setPassword(e.target.value)} type="password" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
-        {error && <div style={{ color: 'crimson' }}>{error}</div>}
-        <button disabled={loading} type="submit" style={{ padding: '10px 12px', border: '1px solid #ddd', borderRadius: 8 }}>{loading ? 'Signing in...' : 'Sign in'}</button>
+        {error && <div className="text-sm text-red-600">{error}</div>}
+        <button disabled={loading} type="submit" className="rounded-md border border-border px-3 py-2 text-sm hover:bg-slate-50 disabled:opacity-60">
+          {loading ? 'Signing in...' : 'Sign in'}
+        </button>
       </form>
     </main>
   )
 }
-
-

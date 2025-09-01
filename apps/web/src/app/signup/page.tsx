@@ -37,55 +37,54 @@ export default function SignupPage() {
   }
 
   return (
-    <main style={{ maxWidth: 420, margin: '40px auto', padding: '0 16px' }}>
-      <h1 style={{ fontSize: 24, marginBottom: 12 }}>Sign up</h1>
-      <form onSubmit={onSubmit} style={{ display: 'grid', gap: 12 }}>
-        <div style={{ display: 'flex', gap: 12 }}>
-          <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <input type="radio" name="gender" value="male" checked={gender==='male'} onChange={() => setGender('male')} required />
+    <main className="mx-auto max-w-md px-4 py-8">
+      <h1 className="mb-3 text-2xl font-semibold">Sign up</h1>
+      <form onSubmit={onSubmit} className="grid gap-3">
+        <div className="flex items-center gap-4">
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input type="radio" name="gender" value="male" checked={gender==='male'} onChange={() => setGender('male')} required className="accent-primary" />
             Male
           </label>
-          <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <input type="radio" name="gender" value="female" checked={gender==='female'} onChange={() => setGender('female')} required />
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input type="radio" name="gender" value="female" checked={gender==='female'} onChange={() => setGender('female')} required className="accent-primary" />
             Female
           </label>
         </div>
-        <label style={{ display: 'grid', gap: 6 }}>
+        <label className="grid gap-1.5 text-sm">
           <span>Email</span>
-          <input value={email} onChange={e => setEmail(e.target.value)} type="email" required style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={email} onChange={e => setEmail(e.target.value)} type="email" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
-        <label style={{ display: 'grid', gap: 6 }}>
+        <label className="grid gap-1.5 text-sm">
           <span>Username</span>
-          <input value={username} onChange={e => setUsername(e.target.value)} required style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={username} onChange={e => setUsername(e.target.value)} required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
-        <label style={{ display: 'grid', gap: 6 }}>
+        <label className="grid gap-1.5 text-sm">
           <span>Display name (optional)</span>
-          <input value={displayName} onChange={e => setDisplayName(e.target.value)} style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={displayName} onChange={e => setDisplayName(e.target.value)} className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
-        <label style={{ display: 'grid', gap: 6 }}>
+        <label className="grid gap-1.5 text-sm">
           <span>Password</span>
-          <input value={password} onChange={e => setPassword(e.target.value)} type="password" required style={{ padding: 8, border: '1px solid #ddd', borderRadius: 6 }} />
+          <input value={password} onChange={e => setPassword(e.target.value)} type="password" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
         <div>
-          <div style={{ marginBottom: 6 }}>Pick at least 2 tags</div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <div className="mb-1.5 text-sm">Pick at least 2 tags</div>
+          <div className="flex flex-wrap gap-2">
             {tags.map(t => (
-              <label key={t.slug} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid #eee', borderRadius: 999, padding: '4px 10px' }}>
+              <label key={t.slug} className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm">
                 <input
                   type="checkbox"
+                  className="accent-primary"
                   checked={selected.includes(t.slug)}
                   onChange={() => setSelected(prev => prev.includes(t.slug) ? prev.filter(s => s !== t.slug) : [...prev, t.slug])}
                 />
-                <span style={{ fontSize: 13 }}>{t.name}</span>
+                <span>{t.name}</span>
               </label>
             ))}
           </div>
         </div>
-        {error && <div style={{ color: 'crimson' }}>{error}</div>}
-        <button disabled={loading} type="submit" style={{ padding: '10px 12px', border: '1px solid #ddd', borderRadius: 8 }}>{loading ? 'Creating account...' : 'Create account'}</button>
+        {error && <div className="text-sm text-red-600">{error}</div>}
+        <button disabled={loading} type="submit" className="rounded-md border border-border px-3 py-2 text-sm hover:bg-slate-50 disabled:opacity-60">{loading ? 'Creating account...' : 'Create account'}</button>
       </form>
     </main>
   )
 }
-
-

@@ -15,20 +15,11 @@ export default async function Home() {
     )
   }
   return (
-    <main style={{ maxWidth: 720, margin: '40px auto', padding: '0 16px' }}>
-      <h1 style={{ fontSize: 28, marginBottom: 12 }}>Chooz</h1>
-      <p style={{ color: '#555', marginBottom: 24 }}>
-        A simple dating app. This is the landing page.
-      </p>
-      <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
-        <a href="#users" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Browse users</a>
-        <a href="/login" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Login</a>
-        <a href="/signup" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Sign up</a>
-        <a href="/me" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>My profile</a>
-        <a href="/logout" style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: 8 }}>Logout</a>
-      </div>
+    <main className="mx-auto max-w-5xl px-4 py-6">
+      <h1 className="mb-3 text-2xl font-semibold">Chooz</h1>
+      <p className="mb-6 text-slate-600 dark:text-slate-300">A simple dating app.</p>
       <section>
-        <h2 id="users" style={{ fontSize: 20, marginBottom: 12 }}>Users</h2>
+        <h2 id="users" className="mb-3 text-lg font-medium">Users</h2>
         <UsersBrowser />
       </section>
     </main>
