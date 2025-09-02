@@ -31,7 +31,7 @@ services:
       NEXTAUTH_URL: http://localhost:3000
       AUTH_SECRET: dev-secret-please-change
     volumes:
-      - /home/aldur/dev/chooz:/workspace
+      - ../../:/workspace
       - web_node_modules:/workspace/apps/web/node_modules
     ports:
       - "3000:3000"
