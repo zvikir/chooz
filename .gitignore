@@ -1,6 +1,27 @@
 # QA artifacts
+# QA artifacts
 qa/**/node_modules/
 qa/**/reports/
 qa/fe/test-results/
+
+# General
+node_modules/
+*.log
+.DS_Store
+.env*
+
+# Next.js / build outputs
+.next/
+out/
+dist/
+build/
+.turbo/
+.cache/
+
+# Test outputs
+coverage/
+test-results/
+playwright-report/
+reports/
 
 
