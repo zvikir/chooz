@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  fe-tests:
+    build: ../../qa/fe
+    environment:
+      - E2E_BASE_URL=${E2E_BASE_URL:-http://host.docker.internal:3000}
+      - PLAYWRIGHT_ARGS=${PLAYWRIGHT_ARGS:-}
+    working_dir: /workspace
+    volumes:
+      - ../../qa/fe:/workspace
+      - ../../qa/fe/reports:/workspace/reports
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: bash -lc "npm install --no-audit --no-fund && npx playwright test --reporter=junit,line --output=./reports ${PLAYWRIGHT_ARGS}"
+
+  db-tests:
+    build: ../../qa/db
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://chooz:chooz@host.docker.internal:5432/chooz?schema=public}
+      - VITEST_ARGS=${VITEST_ARGS:-}
+    working_dir: /workspace
+    volumes:
+      - ../../qa/db:/workspace
+      - ../../qa/db/reports:/workspace/reports
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: bash -lc "npm install --no-audit --no-fund && npx vitest run --reporter=junit --outputFile=./reports/junit.xml ${VITEST_ARGS}"
+
+
