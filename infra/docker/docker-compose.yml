@@ -28,7 +28,6 @@ services:
     environment:
       NODE_ENV: development
       DATABASE_URL: postgresql://chooz:chooz@postgres:5432/chooz?schema=public
-      NEXTAUTH_URL: http://localhost:3000
       AUTH_SECRET: dev-secret-please-change
     volumes:
       - ../../:/workspace
@@ -39,6 +38,11 @@ services:
       postgres:
         condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/login > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
 
 volumes:
   chooz_pg_data:

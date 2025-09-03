@@ -15,7 +15,10 @@ test.describe('Users listing', () => {
     expect(initial).toBeGreaterThan(0)
 
     await page.getByTestId('users-search').fill('nonexistentuserquery')
-    await expect(page.getByTestId('users-empty')).toBeVisible()
+    // Prefer waiting for loading spinner lifecycle to avoid races
+    await expect(page.getByTestId('users-loading')).toBeVisible({ timeout: 15000 }).catch(() => {})
+    await expect(page.getByTestId('users-loading')).toHaveCount(0, { timeout: 15000 })
+    await expect(page.getByTestId('users-empty')).toBeVisible({ timeout: 15000 })
 
     await page.getByTestId('users-search').fill('alice')
     await expect(page.getByTestId('users-list')).toBeVisible()

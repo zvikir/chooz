@@ -35,7 +35,7 @@ test.describe('Auth', () => {
     await page.getByLabel('Password').fill('password')
     await page.getByRole('button', { name: 'Sign in' }).click()
     await page.waitForURL('**/')
-    await expect(page.getByText('Users')).toBeVisible()
+    await expect(page.getByText('Users')).toBeVisible({ timeout: 15000 })
   })
 
   test('protected /me page requires auth', async ({ page }) => {

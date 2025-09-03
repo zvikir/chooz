@@ -1,0 +1,15 @@
+.git
+node_modules
+**/.next
+**/out
+**/dist
+**/build
+**/coverage
+**/test-results
+**/reports
+**/.cache
+*.log
+.DS_Store
+qa/**/node_modules
+qa/**/reports
+qa/fe/test-results
