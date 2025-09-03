@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AppShell from '@/components/AppShell'
+import ThemeClient from '@/components/ThemeClient'
 // Root layout renders global styles and fonts. Section layouts handle nav.
 
 const geistSans = Geist({
@@ -26,7 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-dvh bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-dvh antialiased`}>
+        <ThemeClient />
         <AppShell>{children}</AppShell>
       </body>
     </html>

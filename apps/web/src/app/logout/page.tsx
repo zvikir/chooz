@@ -13,10 +13,10 @@ export default function LogoutPage() {
   }, [])
 
   return (
-    <main style={{ maxWidth: 720, margin: '40px auto', padding: '0 16px' }}>
-      <h1 style={{ fontSize: 24, marginBottom: 12 }}>Logout</h1>
+    <main className="mx-auto max-w-3xl px-4 py-12">
+      <h1 className="mb-4 text-3xl font-semibold">Logout</h1>
       <p>{done ? 'You have been logged out.' : 'Logging you out...'}</p>
-      {done && <a href="/" style={{ marginTop: 12, display: 'inline-block' }}>Back to home</a>}
+      {done && <a href="/" className="mt-3 inline-block rounded-md border border-border px-3 py-2">Back to home</a>}
     </main>
   )
 }

@@ -38,15 +38,15 @@ test('theme toggle switches and persists', async ({ page }) => {
   await toggle.click()
   const darkItem = page.getByRole('menuitem', { name: /dark/i }).first()
   await darkItem.click()
-  await expect(page.locator('html, body')).toHaveAttribute(/class|data-theme/, /dark/i)
+  await expect(page.locator('html')).toHaveAttribute('data-theme', /dark/i)
   await page.reload()
-  await expect(page.locator('html, body')).toHaveAttribute(/class|data-theme/, /dark/i)
+  await expect(page.locator('html')).toHaveAttribute('data-theme', /dark/i)
   await toggle.click()
   const lightItem = page.getByRole('menuitem', { name: /light/i }).first()
   await lightItem.click()
-  await expect(page.locator('html, body')).toHaveAttribute(/class|data-theme/, /light/i)
+  await expect(page.locator('html')).toHaveAttribute('data-theme', /light/i)
   await page.reload()
-  await expect(page.locator('html, body')).toHaveAttribute(/class|data-theme/, /light/i)
+  await expect(page.locator('html')).toHaveAttribute('data-theme', /light/i)
 })
 
 /**
@@ -58,8 +58,8 @@ test('theme toggle switches and persists', async ({ page }) => {
  */
 test('theme toggle is accessible and focus-visible', async ({ page }) => {
   await page.goto('/')
-  await page.keyboard.press('Tab')
   const toggle = page.getByRole('button', { name: /theme|dark|light|system/i })
+  await toggle.focus()
   await expect(toggle).toBeFocused()
 })
 

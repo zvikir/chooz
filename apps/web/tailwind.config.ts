@@ -9,12 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        border: '#e5e7eb',
-        surface: '#ffffff',
-        muted: '#6b7280',
+        border: '#1C2738',
+        surface: '#0E1525',
+        muted: '#A7B1C2',
         primary: {
-          DEFAULT: '#2563eb',
+          DEFAULT: '#7C5CFF',
           foreground: '#ffffff',
+        },
+        accent: {
+          DEFAULT: '#64D2FF',
         },
       },
       borderRadius: {
@@ -23,7 +26,7 @@ export default {
         lg: '16px',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(0,0,0,0.05), 0 1px 6px rgba(0,0,0,0.04)',
+        card: '0 6px 24px -6px rgba(0,0,0,0.5), inset 0 0 0 1px #1C2738',
       },
     },
   },
