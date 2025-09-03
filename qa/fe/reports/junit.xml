@@ -1,0 +1,24 @@
+<testsuites id="" name="" tests="5" failures="0" skipped="1" errors="0" time="7.390682">
+<testsuite name="auth.spec.ts" timestamp="2025-09-03T18:53:45.196Z" hostname="chromium" tests="2" failures="0" skipped="0" time="9.921" errors="0">
+<testcase name="Auth › login success and failure" classname="auth.spec.ts" time="5.369">
+</testcase>
+<testcase name="Auth › protected /me page requires auth" classname="auth.spec.ts" time="4.552">
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2025-09-03T18:53:45.196Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.783" errors="0">
+<testcase name="login page renders" classname="smoke.spec.ts" time="1.783">
+</testcase>
+</testsuite>
+<testsuite name="users.spec.ts" timestamp="2025-09-03T18:53:45.196Z" hostname="chromium" tests="2" failures="0" skipped="1" time="7.435" errors="0">
+<testcase name="Users listing › shows users and supports search" classname="users.spec.ts" time="6.085">
+</testcase>
+<testcase name="Users listing › filters by single tag" classname="users.spec.ts" time="1.35">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

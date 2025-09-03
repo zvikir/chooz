@@ -12,7 +12,7 @@ services:
       - ../../qa/fe/reports:/workspace/reports
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    command: bash -lc "npm install --no-audit --no-fund && npx playwright test --reporter=junit,line --output=./reports ${PLAYWRIGHT_ARGS}"
+    command: bash -lc "mkdir -p reports && npm install --no-audit --no-fund && (npx playwright test ${PLAYWRIGHT_ARGS}; CODE=$?; node scripts/json-to-text.js || true; node scripts/junit-to-text.js || true; exit ${CODE})"
 
   db-tests:
     build: ../../qa/db
@@ -25,6 +25,6 @@ services:
       - ../../qa/db/reports:/workspace/reports
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    command: bash -lc "npm install --no-audit --no-fund && npx vitest run --reporter=junit --outputFile=./reports/junit.xml ${VITEST_ARGS}"
+    command: bash -lc "mkdir -p reports && npm install --no-audit --no-fund && (npx vitest run ${VITEST_ARGS}; CODE=$?; node scripts/junit-to-text.js || true; exit ${CODE})"
 
 

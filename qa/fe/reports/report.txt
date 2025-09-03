@@ -1,0 +1,12 @@
+FE Test Summary
+
+Suite: auth.spec.ts
+- Auth › login success and failure: PASS
+- Auth › protected /me page requires auth: PASS
+
+Suite: smoke.spec.ts
+- login page renders: PASS
+
+Suite: users.spec.ts
+- Users listing › shows users and supports search: PASS
+- Users listing › filters by single tag: PASS

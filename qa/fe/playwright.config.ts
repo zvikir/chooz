@@ -8,7 +8,6 @@ export default defineConfig({
   reporter: [
     ['line'],
     ['junit', { outputFile: 'reports/junit.xml' }],
-    ['html', { outputFolder: 'reports/html', open: 'never' }],
     ['json', { outputFile: 'reports/results.json' }],
   ],
   use: {

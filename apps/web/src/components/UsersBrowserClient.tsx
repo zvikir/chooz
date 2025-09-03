@@ -12,12 +12,13 @@ export default function UsersBrowserClient({ initialUsers, tags }: { initialUser
   const [loading, setLoading] = useState(false)
 
   async function refetch(nextSelected: string[], nextQ: string) {
-    const qParam = nextQ ? `&q=${encodeURIComponent(nextQ)}` : ''
-    const tagParam = nextSelected.length ? `?tags=${encodeURIComponent(nextSelected.join(','))}` : '?'
-    const sep = tagParam.endsWith('?') ? '' : ''
+    const params = new URLSearchParams()
+    if (nextSelected.length) params.set('tags', nextSelected.join(','))
+    if (nextQ) params.set('q', nextQ)
+    const qs = params.toString()
     setLoading(true)
     try {
-      const res = await fetch(`/api/users${tagParam}${qParam}`)
+      const res = await fetch(`/api/users${qs ? `?${qs}` : ''}`)
       const data = await res.json()
       setUsers(data)
     } finally {

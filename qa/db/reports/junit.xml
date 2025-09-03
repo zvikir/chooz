@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="0.546">
-    <testsuite name="tests/logic.test.ts" timestamp="2025-09-03T17:55:33.721Z" hostname="689ee1c06607" tests="3" failures="0" errors="0" skipped="0" time="0.105501384">
-        <testcase classname="tests/logic.test.ts" name="users email and username are unique" time="0.058761617">
+<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="0.375">
+    <testsuite name="tests/logic.test.ts" timestamp="2025-09-03T18:27:39.843Z" hostname="6a142d3161d2" tests="3" failures="0" errors="0" skipped="0" time="0.078807367">
+        <testcase classname="tests/logic.test.ts" name="users email and username are unique" time="0.039964645">
         </testcase>
-        <testcase classname="tests/logic.test.ts" name="FTS query returns rows for common term" time="0.022987532">
+        <testcase classname="tests/logic.test.ts" name="FTS query returns rows for common term" time="0.01840502">
         </testcase>
-        <testcase classname="tests/logic.test.ts" name="tag filter returns only users with selected tags" time="0.022435785">
+        <testcase classname="tests/logic.test.ts" name="tag filter returns only users with selected tags" time="0.019314719">
         </testcase>
     </testsuite>
-    <testsuite name="tests/schema.test.ts" timestamp="2025-09-03T17:55:33.723Z" hostname="689ee1c06607" tests="2" failures="0" errors="0" skipped="0" time="0.069183622">
-        <testcase classname="tests/schema.test.ts" name="DATABASE_URL is provided" time="0.001895992">
+    <testsuite name="tests/schema.test.ts" timestamp="2025-09-03T18:27:39.844Z" hostname="6a142d3161d2" tests="2" failures="0" errors="0" skipped="0" time="0.043755278">
+        <testcase classname="tests/schema.test.ts" name="DATABASE_URL is provided" time="0.001364885">
         </testcase>
-        <testcase classname="tests/schema.test.ts" name="users.gender column exists and is constrained" time="0.066081214">
+        <testcase classname="tests/schema.test.ts" name="users.gender column exists and is constrained" time="0.041581707">
         </testcase>
     </testsuite>
 </testsuites>

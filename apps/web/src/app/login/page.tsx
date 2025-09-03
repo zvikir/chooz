@@ -16,7 +16,11 @@ export default function LoginPage() {
     setError(null)
     const res = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) })
     setLoading(false)
-    if (res.ok) router.push('/')
+    if (res.ok) {
+      // Force full reload so HttpOnly cookie is included in SSR request
+      window.location.href = '/'
+      return
+    }
     else setError('Invalid credentials')
   }
 

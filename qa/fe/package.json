@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "playwright test",
-    "test:report": "playwright show-report"
+    "test": "playwright test && node scripts/json-to-text.js && node scripts/junit-to-text.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.47.2",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "xml2js": "^0.6.2"
   }
 }
 
