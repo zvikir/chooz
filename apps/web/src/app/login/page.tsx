@@ -26,14 +26,14 @@ export default function LoginPage() {
       <form onSubmit={onSubmit} className="grid gap-3">
         <label className="grid gap-1.5 text-sm">
           <span>Email</span>
-          <input value={email} onChange={e => setEmail(e.target.value)} type="email" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
+          <input data-testid="login-email" value={email} onChange={e => setEmail(e.target.value)} type="email" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
         <label className="grid gap-1.5 text-sm">
           <span>Password</span>
-          <input value={password} onChange={e => setPassword(e.target.value)} type="password" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
+          <input data-testid="login-password" value={password} onChange={e => setPassword(e.target.value)} type="password" required className="rounded-md border border-border px-3 py-2 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400" />
         </label>
         {error && <div className="text-sm text-red-600">{error}</div>}
-        <button disabled={loading} type="submit" className="rounded-md border border-border px-3 py-2 text-sm hover:bg-slate-50 disabled:opacity-60">
+        <button data-testid="login-submit" disabled={loading} type="submit" className="rounded-md border border-border px-3 py-2 text-sm hover:bg-slate-50 disabled:opacity-60">
           {loading ? 'Signing in...' : 'Sign in'}
         </button>
       </form>

@@ -33,8 +33,9 @@ export default function UsersBrowserClient({ initialUsers, tags }: { initialUser
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2" data-testid="users-toolbar">
         <input
+          data-testid="users-search"
           placeholder="Search users..."
           value={q}
           onChange={(e) => { const v = e.target.value; setQ(v); refetch(selected, v) }}
@@ -42,13 +43,13 @@ export default function UsersBrowserClient({ initialUsers, tags }: { initialUser
         />
         {tags.map(t => (
           <label key={t.slug} className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm hover:bg-slate-50">
-            <input type="checkbox" className="accent-primary" checked={selected.includes(t.slug)} onChange={() => toggle(t.slug)} />
+            <input data-testid={`filter-tag-${t.slug}`} type="checkbox" className="accent-primary" checked={selected.includes(t.slug)} onChange={() => toggle(t.slug)} />
             <span>{t.name}</span>
           </label>
         ))}
       </div>
       {loading ? (
-        <ul className="grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 xl:grid-cols-3" data-testid="users-loading">
           {Array.from({ length: 6 }).map((_, i) => (
             <li key={i} className="grid grid-cols-[64px_1fr] items-start gap-3 rounded-lg border border-border p-3 shadow-card">
               <div className="h-16 w-16 animate-pulse rounded-md bg-slate-200 dark:bg-slate-700" />
@@ -64,18 +65,18 @@ export default function UsersBrowserClient({ initialUsers, tags }: { initialUser
           ))}
         </ul>
       ) : users.length === 0 ? (
-        <p className="text-sm text-muted">No users match the selected filters.</p>
+        <p className="text-sm text-muted" data-testid="users-empty">No users match the selected filters.</p>
       ) : (
-        <ul className="grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 xl:grid-cols-3" data-testid="users-list">
           {users.map(u => (
-            <li key={u.id} className="rounded-lg border border-border p-3 shadow-card transition hover:shadow-md">
+            <li key={u.id} className="rounded-lg border border-border p-3 shadow-card transition hover:shadow-md" data-testid="user-card">
               <img src={u.photo_url} alt={u.username} className="h-40 w-full rounded-md object-cover" />
               <div className="mt-3">
                 <div className="font-semibold">{u.display_name || u.username} <span className="font-normal text-muted">({u.gender})</span></div>
                 {u.bio && <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">{u.bio}</div>}
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {u.tags.map(t => (
-                    <span key={t} className="rounded-full border border-border px-2 py-0.5 text-xs">{t}</span>
+                    <span key={t} className="rounded-full border border-border px-2 py-0.5 text-xs" data-testid="user-tag">{t}</span>
                   ))}
                 </div>
               </div>
