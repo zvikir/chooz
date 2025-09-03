@@ -19,3 +19,8 @@
 Notes:
 - Tests live under `qa/` and can target local/remote envs via env vars.
 - Test containers install deps on startup and write reports even on failures.
+
+Styling & Theme Acceptance (planned, test-first)
+- Dark theme by default with purple-forward palette; light theme available.
+- Theme toggle: System / Light / Dark; manual choice overrides system and persists.
+- No flash of wrong theme on reload; early class applied via persisted choice.
