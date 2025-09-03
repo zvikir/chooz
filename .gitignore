@@ -1,0 +1,6 @@
+# QA artifacts
+qa/**/node_modules/
+qa/**/reports/
+qa/fe/test-results/
+
+
