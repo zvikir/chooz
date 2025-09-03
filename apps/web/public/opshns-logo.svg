@@ -1,0 +1,37 @@
+<svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Opshns">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C5CFF"/>
+      <stop offset="100%" stop-color="#4C3AAE"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#64D2FF"/>
+      <stop offset="100%" stop-color="#FF7AD9"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Emblem -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="80" height="80" rx="18" fill="url(#g1)"/>
+    <path d="M20 55c15 10 25 10 40 0" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+    <circle cx="30" cy="32" r="6" fill="#FFFFFF" fill-opacity="0.95"/>
+    <circle cx="54" cy="32" r="6" fill="#FFFFFF" fill-opacity="0.95"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(140,48)">
+    <text x="0" y="48" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="64" fill="url(#g1)" letter-spacing="1">
+      Opshns
+    </text>
+    <rect x="2" y="56" width="172" height="6" rx="3" fill="url(#g2)" opacity="0.75"/>
+  </g>
+</svg>
+
+

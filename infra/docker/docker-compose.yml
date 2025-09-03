@@ -29,6 +29,7 @@ services:
       NODE_ENV: development
       DATABASE_URL: postgresql://chooz:chooz@postgres:5432/chooz?schema=public
       AUTH_SECRET: dev-secret-please-change
+      NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-Chooz}
     volumes:
       - ../../:/workspace
       - web_node_modules:/workspace/apps/web/node_modules

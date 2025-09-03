@@ -1,14 +1,11 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const hideNavbar = pathname === '/login' || pathname === '/signup'
+export default function AppShell({ children, isAuthenticated }: { children: React.ReactNode; isAuthenticated: boolean }) {
   return (
     <>
-      {!hideNavbar && <Navbar />}
+      <Navbar isAuthenticated={isAuthenticated} />
       {children}
     </>
   )
