@@ -7,6 +7,7 @@ import UserGrid from "./UserGrid";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const DatingMarketplace = () => {
   const { user, loading } = useAuth();
@@ -87,10 +88,30 @@ const DatingMarketplace = () => {
       {/* Hero Section */}
       <HeroSection />
       
-      {/* Main Content */}
-          <div className="w-full">
-            <UserGrid searchQuery={searchQuery} selectedTags={selectedTags} ageRange={ageRange} location={location} />
-          </div>
+      {/* Main Content with tabs */}
+      <div className="w-full max-w-7xl mx-auto px-0 md:px-6">
+        <Tabs defaultValue="unreacted" className="w-full">
+          <TabsList className="mb-4">
+            <TabsTrigger value="unreacted">Discover</TabsTrigger>
+            <TabsTrigger value="liked">Liked</TabsTrigger>
+            <TabsTrigger value="likers">Liked You</TabsTrigger>
+            <TabsTrigger value="matches">Matches</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="unreacted">
+            <UserGrid tab="unreacted" searchQuery={searchQuery} selectedTags={selectedTags} ageRange={ageRange} location={location} />
+          </TabsContent>
+          <TabsContent value="liked">
+            <UserGrid tab="liked" />
+          </TabsContent>
+          <TabsContent value="likers">
+            <UserGrid tab="likers" />
+          </TabsContent>
+          <TabsContent value="matches">
+            <UserGrid tab="matches" />
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
 };
