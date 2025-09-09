@@ -1,27 +1,41 @@
-# QA artifacts
-# QA artifacts
-qa/**/node_modules/
-qa/**/reports/
-qa/fe/test-results/
-
-# General
+# Node
 node_modules/
-*.log
-.DS_Store
-.env*
+.npm-cache/
 
-# Next.js / build outputs
+# Next.js
 .next/
 out/
-dist/
+
+# Build outputs
 build/
-.turbo/
-.cache/
+dist/
+/.turbo/
 
-# Test outputs
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Test / QA artifacts
 coverage/
-test-results/
 playwright-report/
-reports/
+**/test-results/
+qa/**/reports/
 
+# Editor
+.vscode/
+.idea/
+
+# Misc
 

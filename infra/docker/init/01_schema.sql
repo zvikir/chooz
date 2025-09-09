@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
   bio TEXT,
   -- required gender for app features (male|female)
   gender TEXT NOT NULL CHECK (gender IN ('male','female')),
-  birthdate DATE,
-  location TEXT,
+  birthdate DATE NOT NULL,
+  location TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
