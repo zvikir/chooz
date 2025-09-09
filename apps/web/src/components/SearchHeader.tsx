@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, SlidersHorizontal, ChevronDown, ChevronUp, Home, LogOut } from "lucide-react";
+import { Search, SlidersHorizontal, ChevronDown, ChevronUp, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -148,16 +148,14 @@ const SearchHeader = ({ onFiltersChange, selectedTags = [], searchQuery: initial
       <div className="bg-white border-b shadow-sm px-6 py-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
-            {/* Left side - Home button */}
-            <Button 
-              variant="ghost" 
-              size="sm"
+            {/* Left side - Logo as home link (same size as old button) */}
+            <button
               onClick={() => window.location.href = '/'}
-              className="flex items-center gap-2"
+              className="h-8 w-24 flex items-center justify-center"
+              aria-label="Go to home"
             >
-              <Home className="w-4 h-4" />
-              Home
-            </Button>
+              <img src="/logo-catalov.png" alt="Catalove" className="h-8" />
+            </button>
             
             {/* Center - Filters Button */}
             <Button 

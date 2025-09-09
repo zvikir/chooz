@@ -45,12 +45,7 @@ const DatingMarketplace = () => {
                 <Heart className="w-16 h-16 text-white fill-white" />
               </div>
             </div>
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-              Find Your Perfect Match
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Discover meaningful connections with people who share your interests and values
-            </p>
+            <img src="/logo-catalov.png" alt="Catalove" className="h-16 md:h-24 mx-auto mb-0 drop-shadow-lg" />
           </div>
           
           <div className="space-y-4">
@@ -70,7 +65,7 @@ const DatingMarketplace = () => {
           </div>
           
           <p className="text-sm text-gray-500 mt-8">
-            Join thousands of people finding love on LoveConnect
+            Join thousands of people finding love on Catalove
           </p>
         </div>
       </div>
